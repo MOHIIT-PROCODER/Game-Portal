@@ -1,0 +1,37 @@
+export const ROUTES = {
+  HOME: "/",
+  GAME: "/game/:slug",
+  CATEGORY: "/category/:category",
+  SEARCH: "/search",
+  POPULAR: "/popular",
+  NEW: "/new-games",
+  TRENDING: "/trending",
+  RECENT: "/recent",
+  FAVORITES: "/favorites",
+  ALL: "/all-games",
+  ABOUT: "/about",
+  CONTACT: "/contact",
+  PRIVACY: "/privacy",
+  TERMS: "/terms",
+};
+
+export const CATEGORY_ICONS = {
+  Action: "⚡",
+  Adventure: "🎒",
+  Arcade: "🕹️",
+  Driving: "🚗",
+  Car: "🚗",
+  Running: "🏃",
+  Puzzle: "🧩",
+  Puzzles: "🧩",
+  Shooting: "🔫",
+  Multiplayer: "👥",
+  Sports: "⚽",
+  Card: "🃏",
+  Casual: "🎈",
+  Board: "🎲",
+  Classics: "🏆",
+  Junior: "👶",
+  Strategy: "🧠",
+};
+export default { ROUTES, CATEGORY_ICONS };

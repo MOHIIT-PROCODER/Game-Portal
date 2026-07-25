@@ -1,0 +1,29 @@
+services:
+  # 1. Backend API Service
+  - type: web
+    name: game-portal-server
+    env: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Allow the frontend to access this API
+      - key: FRONTEND_URL
+        value: https://game-portal-client.onrender.com # (Update this if you change the client name)
+
+  # 2. Frontend React Application
+  - type: web
+    name: game-portal-client
+    env: static
+    rootDir: client
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      # Inject the API URL into the React build process
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: game-portal-server
+          envVarKey: RENDER_EXTERNAL_URL

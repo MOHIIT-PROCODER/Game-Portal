@@ -1,0 +1,45 @@
+import React from "react";
+
+export function FullscreenButton({ isFullscreen, onClick }) {
+  return (
+    <button
+      className={`toolbar-btn ${isFullscreen ? "active" : ""}`}
+      onClick={onClick}
+      title={isFullscreen ? "Exit Fullscreen" : "Fullscreen Mode"}
+    >
+      {isFullscreen ? (
+        <>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M4 14h6v6M20 10h-6V4M14 10l7-7M10 14l-7 7" />
+          </svg>
+          <span className="btn-label">Minimize</span>
+        </>
+      ) : (
+        <>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+          </svg>
+          <span className="btn-label">Fullscreen</span>
+        </>
+      )}
+    </button>
+  );
+}
+
+export default FullscreenButton;
