@@ -13,7 +13,21 @@ import sitemapRoutes from "./routes/sitemapRoutes.js";
 const app = express();
 
 // Standard middlewares
-app.use(cors());
+const allowedOrigins = [
+  "https://game-portal-client.onrender.com",
+  "http://localhost:5173",
+  "http://localhost:3000"
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(new Error("CORS policy violation"), false);
+    }
+    return callback(null, true);
+  }
+}));
 app.use(express.json());
 
 // API rate limiter
