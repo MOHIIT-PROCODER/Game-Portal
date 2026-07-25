@@ -42,6 +42,11 @@ app.use("/api/stats", statsRoutes);
 // Root level routes (sitemap)
 app.use("/", sitemapRoutes);
 
+// Root endpoint
+app.get("/", (req, res) => {
+  res.send("Game Portal API is running! Visit the client URL to use the app.");
+});
+
 // Health check endpoint
 app.get("/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date() });
