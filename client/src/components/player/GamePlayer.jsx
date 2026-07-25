@@ -77,15 +77,9 @@ export function GamePlayer({ game, stats, voteLike }) {
 
     // Auto-fullscreen on mobile layout
     if (window.innerWidth <= 768) {
-      setTimeout(() => {
-        if (playerWrapperRef.current) {
-          if (playerWrapperRef.current.requestFullscreen) {
-            playerWrapperRef.current.requestFullscreen();
-          } else if (playerWrapperRef.current.webkitRequestFullscreen) {
-            playerWrapperRef.current.webkitRequestFullscreen();
-          }
-        }
-      }, 100);
+      if (!isFullscreen) {
+        toggleFullscreen();
+      }
     }
   };
 
@@ -119,6 +113,15 @@ export function GamePlayer({ game, stats, voteLike }) {
               title={game.title}
               onLoad={handleIframeLoad}
             />
+            {isFullscreen && (
+              <button 
+                className="exit-fullscreen-btn" 
+                onClick={toggleFullscreen}
+                title="Exit Fullscreen"
+              >
+                ✕
+              </button>
+            )}
           </>
         )}
       </div>
