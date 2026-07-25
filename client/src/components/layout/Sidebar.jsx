@@ -47,6 +47,42 @@ export function Sidebar() {
       )}
 
       <aside className={`sidebar ${drawerOpen ? "open" : "closed"} ${isMobile() ? "mobile-drawer" : ""}`}>
+        {/* Mobile Close Button */}
+        {isMobile() && (
+          <div style={{ display: "flex", justifyContent: "flex-end", padding: "12px 16px" }}>
+            <button
+              onClick={closeMobileDrawer}
+              style={{
+                background: "var(--bg-surface)",
+                border: "1px solid var(--border-default)",
+                color: "var(--text-primary)",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "36px",
+                height: "36px",
+                borderRadius: "50%",
+              }}
+              title="Close Menu"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{ width: "18px", height: "18px" }}
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+        )}
+
         {/* Navigation section */}
         <SidebarSection title="Feeds">
           <SidebarItem
