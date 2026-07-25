@@ -27,26 +27,10 @@ export function CategoryMenu({ collapsed = false }) {
     );
   }
 
-  // Whitelist of primary categories to display in the sidebar
-  const whitelist = [
-    "Adventure",
-    "Arcade",
-    "Board",
-    "Classics",
-    "Junior",
-    "Sports",
-    "Strategy",
-  ];
-
+  // Show top 15 categories from the database instead of a hardcoded whitelist
   const filteredCategories = categories
-    .filter(
-      (cat) =>
-        cat &&
-        cat.category &&
-        whitelist
-          .map((w) => w.toLowerCase())
-          .includes(cat.category.toLowerCase().trim()),
-    )
+    .filter((cat) => cat && cat.category && cat.category.trim() !== "")
+    .slice(0, 15)
     .sort((a, b) => a.category.localeCompare(b.category));
 
   return (
