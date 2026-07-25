@@ -28,11 +28,8 @@ build/
 .env.production.local
 
 # Server caches / local DBs
-*.sqlite
-*.db
+# We want to commit the DB so Render has data even if API blocks its IP
 server/db/
-db.sqlite
-database.sqlite
 
 # Log files
 npm-debug.log*
