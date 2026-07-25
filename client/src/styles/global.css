@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap");/* --- CRAZYGAMES DESIGN TOKENS --- */
+/* --- CRAZYGAMES DESIGN TOKENS --- */
 :root {
   /* Fonts */
   --font-heading:

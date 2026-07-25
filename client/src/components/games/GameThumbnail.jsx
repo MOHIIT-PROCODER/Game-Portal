@@ -49,25 +49,11 @@ export function GameThumbnail({ src, alt, onError }) {
   return (
     <div
       ref={containerRef}
-      className="lazy-thumb-container"
-      style={{
-        position: "relative",
-        width: "100%",
-        aspectRatio: "16/12",
-        overflow: "hidden",
-        backgroundColor: "rgba(255,255,255,0.03)",
-      }}
+      className="relative w-full aspect-[16/12] overflow-hidden bg-white/5 rounded-[inherit]"
     >
       {/* Shimmer placeholder while loading */}
       {!isLoaded && (
-        <div
-          className="skeleton-shimmer"
-          style={{
-            position: "absolute",
-            inset: 0,
-            borderRadius: "inherit",
-          }}
-        />
+        <div className="absolute inset-0 skeleton-shimmer rounded-[inherit]" />
       )}
 
       {/* Actual image (rendered only when in viewport) */}
@@ -75,8 +61,9 @@ export function GameThumbnail({ src, alt, onError }) {
         <img
           src={imgSrc}
           alt={alt || "Game cover"}
-          className={`game-card-image ${isLoaded ? "lazy-img-loaded" : ""}`}
-          style={{ opacity: isLoaded ? 1 : 0 }}
+          className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
+            isLoaded ? "opacity-100" : "opacity-0"
+          }`}
           onLoad={handleLoad}
           onError={handleError}
           decoding="async"

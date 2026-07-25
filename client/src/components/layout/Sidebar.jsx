@@ -37,18 +37,13 @@ export function Sidebar() {
       {mobileDrawerOpen && (
         <div
           onClick={closeMobileDrawer}
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 299,
-            background: "rgba(0,0,0,0.6)",
-          }}
+          className="fixed inset-0 z-[110] bg-black/60"
         />
       )}
 
       <aside 
-        className={`fixed left-0 z-50 flex flex-col overflow-y-auto overflow-x-hidden transition-all duration-300 bg-background border-r border-border
-          top-0 md:top-header h-screen md:h-[calc(100vh-theme(spacing.header))]
+        className={`fixed left-0 z-[120] flex flex-col overflow-y-auto overflow-x-hidden transition-all duration-300 bg-background border-r border-border
+          top-0 md:top-header h-screen md:h-[calc(100vh-theme(spacing.header))] md:z-50
           ${isMobile() ? "w-[280px]" : (drawerOpen ? "w-sidebar" : "w-sidebar-collapsed")}
           ${isMobile() && !drawerOpen ? "-translate-x-full" : "translate-x-0"}
           ${isMobile() && drawerOpen ? "shadow-2xl shadow-black/70" : ""}
