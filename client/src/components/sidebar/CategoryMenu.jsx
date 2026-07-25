@@ -27,16 +27,20 @@ export function CategoryMenu({ collapsed = false }) {
     );
   }
 
-  // Show top 15 categories from the database instead of a hardcoded whitelist
-  const filteredCategories = categories
-    .filter((cat) => cat && cat.category && cat.category.trim() !== "")
-    .slice(0, 15)
-    .sort((a, b) => a.category.localeCompare(b.category));
+  // Hardcoded list of categories the user explicitly requested to always show
+  const requestedCategories = [
+    "Adventure",
+    "Arcade",
+    "Board",
+    "Classics",
+    "Junior",
+    "Sports",
+    "Strategy",
+  ];
 
   return (
     <div className="category-sidebar-list">
-      {filteredCategories.map((cat) => {
-        const catName = cat.category.trim();
+      {requestedCategories.map((catName) => {
         const icon = CATEGORY_ICONS[catName] || "🎈";
         const isActive =
           location.pathname === `/category/${catName.toLowerCase()}`;
