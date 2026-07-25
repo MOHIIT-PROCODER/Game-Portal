@@ -9,7 +9,7 @@ export function GameInfo({ game }) {
   if (!game) return null;
 
   return (
-    <div className="game-info-card">
+    <div className="bg-surface rounded-sm p-6 md:p-8 flex flex-col gap-6">
       <GameTitle title={game.title} category={game.category} />
       <GameDescription description={game.description} />
       <GameInstructions instructions={game.instructions} />

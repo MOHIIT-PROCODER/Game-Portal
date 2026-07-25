@@ -46,7 +46,14 @@ export function Sidebar() {
         />
       )}
 
-      <aside className={`sidebar ${drawerOpen ? "open" : "closed"} ${isMobile() ? "mobile-drawer" : ""}`}>
+      <aside 
+        className={`fixed left-0 z-50 flex flex-col overflow-y-auto overflow-x-hidden transition-all duration-300 bg-background border-r border-border
+          top-0 md:top-header h-screen md:h-[calc(100vh-theme(spacing.header))]
+          ${isMobile() ? "w-[280px]" : (drawerOpen ? "w-sidebar" : "w-sidebar-collapsed")}
+          ${isMobile() && !drawerOpen ? "-translate-x-full" : "translate-x-0"}
+          ${isMobile() && drawerOpen ? "shadow-2xl shadow-black/70" : ""}
+        `}
+      >
         {/* Mobile Close Button */}
         {isMobile() && (
           <div style={{ display: "flex", justifyContent: "flex-end", padding: "12px 16px" }}>
@@ -84,7 +91,7 @@ export function Sidebar() {
         )}
 
         {/* Navigation section */}
-        <SidebarSection title="Feeds">
+        <SidebarSection title="Feeds" collapsed={isCollapsed}>
           <SidebarItem
             icon="🏠"
             label="Home"
@@ -116,7 +123,7 @@ export function Sidebar() {
         </SidebarSection>
 
         {/* Library section */}
-        <SidebarSection title="Library">
+        <SidebarSection title="Library" collapsed={isCollapsed}>
           <SidebarItem
             icon="❤️"
             label="Favorites"
@@ -134,12 +141,12 @@ export function Sidebar() {
         </SidebarSection>
 
         {/* Categories section */}
-        <SidebarSection title="Categories">
+        <SidebarSection title="Categories" collapsed={isCollapsed}>
           <CategoryMenu collapsed={isCollapsed} />
         </SidebarSection>
 
         {/* Company / Info Section */}
-        <SidebarSection title={!isCollapsed ? "Company" : ""}>
+        <SidebarSection title={!isCollapsed ? "Company" : ""} collapsed={isCollapsed}>
           {!isCollapsed ? (
             <div style={{ display: "flex", flexDirection: "column" }}>
               <button

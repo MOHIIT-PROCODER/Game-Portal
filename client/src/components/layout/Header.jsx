@@ -9,18 +9,12 @@ export function Header() {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   return (
-    <header className="header">
-      <div className="header-left">
+    <header className="fixed top-0 left-0 right-0 h-header bg-background/95 backdrop-blur-md border-b border-border z-[100] flex items-center justify-between px-4 lg:px-6">
+      <div className="flex items-center gap-3">
         {/* Hamburger/Toggle Menu for Sidebar */}
         <button
-          className="toolbar-btn"
+          className="p-2 rounded-full text-text-muted hover:text-text-primary hover:bg-white/5 transition-colors"
           onClick={toggleSidebar}
-          style={{
-            padding: "8px",
-            borderRadius: "50%",
-            border: "none",
-            background: "none",
-          }}
           title="Toggle Sidebar"
         >
           <svg
@@ -48,7 +42,7 @@ export function Header() {
       {/* Mobile Right Controls */}
       <div style={{ display: "flex", alignItems: "center" }}>
         <button
-          className="mobile-search-toggle-btn"
+          className="md:hidden p-2 rounded-full text-text-muted hover:text-text-primary hover:bg-white/5 transition-colors"
           onClick={() => setMobileSearchOpen(true)}
           title="Search Games"
         >

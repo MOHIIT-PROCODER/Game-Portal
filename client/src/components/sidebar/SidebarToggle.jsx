@@ -6,16 +6,11 @@ export function SidebarToggle() {
 
   return (
     <div
-      className="sidebar-item"
+      className={`flex items-center py-3 cursor-pointer transition-colors border-t border-border text-text-muted hover:text-text-primary hover:bg-white/5 mt-auto h-[52px] ${!sidebarOpen ? "justify-center px-0" : "justify-start px-6"}`}
       onClick={toggleSidebar}
-      style={{
-        marginTop: "auto",
-        borderTop: "1px solid var(--border-color)",
-        height: "52px",
-      }}
       title={sidebarOpen ? "Collapse Menu" : "Expand Menu"}
     >
-      <span className="sidebar-item-icon">
+      <span className={`flex items-center justify-center text-lg ${!sidebarOpen ? "" : "mr-4 w-6"}`}>
         {sidebarOpen ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +20,7 @@ export function SidebarToggle() {
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ width: "18px", height: "18px" }}
+            className="w-[18px] h-[18px]"
           >
             <polyline points="11 17 6 12 11 7" />
             <polyline points="18 17 13 12 18 7" />
@@ -39,14 +34,14 @@ export function SidebarToggle() {
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ width: "18px", height: "18px" }}
+            className="w-[18px] h-[18px]"
           >
             <polyline points="13 17 18 12 13 7" />
             <polyline points="6 17 11 12 6 7" />
           </svg>
         )}
       </span>
-      {sidebarOpen && <span className="sidebar-item-label">Collapse Menu</span>}
+      {sidebarOpen && <span className="font-semibold whitespace-nowrap overflow-hidden text-ellipsis">Collapse Menu</span>}
     </div>
   );
 }

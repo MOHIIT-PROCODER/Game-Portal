@@ -9,7 +9,7 @@ export function MainLayout({ children }) {
   const { sidebarOpen } = useGameContext();
 
   return (
-    <div className="app-container">
+    <div className="flex flex-col min-h-screen bg-background text-text-primary font-body">
       {/* Top Navbar */}
       <Header />
 
@@ -18,9 +18,11 @@ export function MainLayout({ children }) {
 
       {/* Page Body Wrapper */}
       <div
-        className={`main-wrapper ${sidebarOpen ? "sidebar-open" : "sidebar-closed"}`}
+        className={`flex flex-1 mt-header min-h-[calc(100vh-70px)] transition-[padding-left] duration-0 
+          pl-0 md:pl-sidebar-collapsed 
+          ${sidebarOpen ? "lg:pl-sidebar" : "lg:pl-sidebar-collapsed"}`}
       >
-        <div className="content-container">
+        <div className="flex-1 p-4 lg:p-6 w-full max-w-[1600px] mx-auto flex flex-col gap-7 pb-20">
           {children}
           <Footer />
         </div>

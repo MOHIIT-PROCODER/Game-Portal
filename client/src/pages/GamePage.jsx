@@ -14,8 +14,8 @@ import useGame from "../hooks/useGame";
 /* Skeleton that mimics the game player layout */
 function GamePageSkeleton() {
   return (
-    <div className="game-player-layout">
-      <div className="player-main-area">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 w-full">
+      <div className="flex flex-col gap-5 w-full min-w-0">
         {/* Player iframe skeleton */}
         <div
           className="skeleton-shimmer"
@@ -116,9 +116,9 @@ export function GamePage() {
         description={game.description || `Play ${game.title} online for free. Explore more action, adventure, and puzzle games on GamePortal.`}
         image={game.thumb}
       />
-      <div className="game-player-layout">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 w-full">
         {/* Main Left Column (Iframe player and information detail card) */}
-        <div className="player-main-area">
+        <div className="flex flex-col gap-5 w-full min-w-0">
           <GamePlayer game={game} stats={stats} voteLike={voteLike} />
           <GameInfo game={game} />
         </div>

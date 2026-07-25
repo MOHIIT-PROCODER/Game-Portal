@@ -96,11 +96,12 @@ export function GamePlayer({ game, stats, voteLike }) {
   if (!game) return null;
 
   return (
-    <div className="player-main-area">
+    <div className="flex flex-col gap-5 w-full">
       {/* Player Wrapper Container */}
       <div
         ref={playerWrapperRef}
-        className={`iframe-wrapper ${isFullscreen ? "fullscreen-mode" : ""}`}
+        className={`relative w-full rounded-xs bg-black border-2 border-border aspect-[4/3] min-h-[280px] md:aspect-video overflow-hidden
+          ${isFullscreen ? "fixed !inset-0 z-[100] !border-none !rounded-none !aspect-auto !h-screen !w-screen" : ""}`}
       >
         {!isPlaying ? (
           <PlayOverlay game={game} onPlay={handlePlay} />
@@ -115,7 +116,7 @@ export function GamePlayer({ game, stats, voteLike }) {
             />
             {isFullscreen && (
               <button 
-                className="exit-fullscreen-btn" 
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 text-white border border-white/20 backdrop-blur-md flex items-center justify-center cursor-pointer z-[110] hover:bg-black/70 hover:scale-110 transition-all shadow-lg" 
                 onClick={toggleFullscreen}
                 title="Exit Fullscreen"
               >
