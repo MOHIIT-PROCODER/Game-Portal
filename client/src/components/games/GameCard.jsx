@@ -6,7 +6,9 @@ import { formatPlayCount } from "../../utils/gameMapper";
 
 export function GameCard({ game, isRowItem = false }) {
   const navigate = useNavigate();
-  if (!game) return null;
+  const [isBroken, setIsBroken] = useState(false);
+
+  if (isBroken || !game) return null;
 
   const handleClick = () => {
     navigate(`/game/${game.slug}`);
@@ -28,6 +30,7 @@ export function GameCard({ game, isRowItem = false }) {
         <GameThumbnail
           src={game.thumb}
           alt={game.title}
+          onError={() => setIsBroken(true)}
         />
       </div>
 
