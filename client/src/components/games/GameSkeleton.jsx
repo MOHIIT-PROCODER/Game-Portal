@@ -1,23 +1,51 @@
 import React from "react";
 
-/* ── Individual card skeleton ── */
 function SkeletonCard({ style }) {
   return (
-    <div className="skeleton-card" style={style}>
-      <div className="skeleton-thumb skeleton-shimmer" />
-      <div className="skeleton-info">
+    <div
+      className="skeleton-card"
+      style={{
+        ...style,
+        position: "relative",
+        aspectRatio: "16/12",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-end",
+      }}
+    >
+      {/* Background acts as the thumb */}
+      <div
+        className="skeleton-shimmer"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundColor: "rgba(255, 255, 255, 0.04)",
+        }}
+      />
+      {/* Overlay area */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          padding: "12px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "8px",
+          background: "linear-gradient(to top, rgba(12, 13, 20, 0.9) 0%, rgba(12, 13, 20, 0) 100%)",
+        }}
+      >
         <div
           className="skeleton-line skeleton-shimmer"
-          style={{ width: "75%" }}
+          style={{ width: "75%", backgroundColor: "rgba(255, 255, 255, 0.1)" }}
         />
-        <div className="skeleton-meta-row">
+        <div className="skeleton-meta-row" style={{ display: "flex", gap: "10px" }}>
           <div
             className="skeleton-line skeleton-shimmer"
-            style={{ width: "40%", height: "10px" }}
+            style={{ width: "40%", height: "10px", backgroundColor: "rgba(255, 255, 255, 0.1)" }}
           />
           <div
             className="skeleton-line skeleton-shimmer"
-            style={{ width: "25%", height: "10px" }}
+            style={{ width: "25%", height: "10px", backgroundColor: "rgba(255, 255, 255, 0.1)" }}
           />
         </div>
       </div>
@@ -120,7 +148,6 @@ export function SkeletonCategoryGrid({ count = 10 }) {
 export function HomePageSkeleton() {
   return (
     <div className="skeleton-page" aria-label="Loading content">
-      <SkeletonFeatured />
       <SkeletonSection />
       <SkeletonSection />
       <SkeletonCategoryGrid />
