@@ -4,7 +4,7 @@ services:
     name: game-portal-server
     env: node
     rootDir: server
-    buildCommand: npm install
+    buildCommand: npm install --no-audit
     startCommand: npm start
     envVars:
       - key: NODE_ENV
@@ -18,7 +18,7 @@ services:
     name: game-portal-client
     env: static
     rootDir: client
-    buildCommand: npm install && npm run build
+    buildCommand: npm install --no-audit && npm run build
     staticPublishPath: dist
     envVars:
       # Inject the API URL into the React build process
