@@ -5,7 +5,7 @@ export function GameIframe({ url, title, onLoad }) {
 
   useEffect(() => {
     if (iframeRef.current) {
-      iframeRef.current.focus();
+      iframeRef.current.focus({ preventScroll: true });
     }
   }, [url]);
 
@@ -13,7 +13,7 @@ export function GameIframe({ url, title, onLoad }) {
 
   const handleLoad = (e) => {
     if (iframeRef.current) {
-      iframeRef.current.focus();
+      iframeRef.current.focus({ preventScroll: true });
     }
     if (onLoad) onLoad(e);
   };
