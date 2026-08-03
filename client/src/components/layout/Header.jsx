@@ -8,6 +8,14 @@ export function Header() {
   const { toggleSidebar } = useGameContext();
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
+  const handleAppInstallClick = () => {
+    if (window.triggerPwaInstall) {
+      window.triggerPwaInstall();
+    } else {
+      window.dispatchEvent(new CustomEvent("open-install-pwa-modal"));
+    }
+  };
+
   return (
     <header className="header">
       <div className="header-left">
@@ -26,12 +34,12 @@ export function Header() {
           }}
           onClick={toggleSidebar}
           title="Toggle Sidebar"
-          onMouseEnter={e => {
+          onMouseEnter={(e) => {
             e.currentTarget.style.background = "rgba(124,58,237,0.12)";
             e.currentTarget.style.color = "var(--accent-light)";
             e.currentTarget.style.borderColor = "rgba(124,58,237,0.3)";
           }}
-          onMouseLeave={e => {
+          onMouseLeave={(e) => {
             e.currentTarget.style.background = "rgba(255,255,255,0.04)";
             e.currentTarget.style.color = "var(--text-tertiary)";
             e.currentTarget.style.borderColor = "var(--border-subtle)";
@@ -59,8 +67,49 @@ export function Header() {
       {/* Desktop Search Bar */}
       <SearchBar />
 
-      {/* Mobile Right Controls */}
-      <div style={{ display: "flex", alignItems: "center" }}>
+      {/* Right Action Controls (Install App & Search Toggle) */}
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        {/* Mobile & Desktop Install App Button */}
+        <button
+          onClick={handleAppInstallClick}
+          title="Install CrazyGames Mobile App / APK"
+          style={{
+            background: "linear-gradient(135deg, #7c3aed, #ec4899, #f97316)",
+            color: "#ffffff",
+            border: "none",
+            borderRadius: "12px",
+            padding: "7px 12px",
+            fontSize: "12px",
+            fontWeight: "700",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            cursor: "pointer",
+            boxShadow: "0 4px 14px rgba(124, 58, 237, 0.4)",
+            transition: "all 0.2s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "scale(1.04)";
+            e.currentTarget.style.boxShadow = "0 6px 20px rgba(236, 72, 153, 0.5)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "scale(1)";
+            e.currentTarget.style.boxShadow = "0 4px 14px rgba(124, 58, 237, 0.4)";
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            style={{ width: "15px", height: "15px" }}
+          >
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+          </svg>
+          <span className="hidden sm:inline">Install App</span>
+          <span className="sm:hidden">App</span>
+        </button>
+
+        {/* Mobile Search Toggle */}
         <button
           className="mobile-search-toggle-btn"
           onClick={() => setMobileSearchOpen(true)}

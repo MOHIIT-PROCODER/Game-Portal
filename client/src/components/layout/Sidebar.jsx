@@ -143,6 +143,20 @@ export function Sidebar() {
             onClick={() => handleNavigation(ROUTES.TRENDING)}
             collapsed={isCollapsed}
           />
+          <SidebarItem
+            icon="📱"
+            label="Download App"
+            active={false}
+            onClick={() => {
+              if (isMobile()) closeMobileDrawer();
+              if (window.triggerPwaInstall) {
+                window.triggerPwaInstall();
+              } else {
+                window.dispatchEvent(new CustomEvent("open-install-pwa-modal"));
+              }
+            }}
+            collapsed={isCollapsed}
+          />
         </SidebarSection>
 
         {/* Library section */}
