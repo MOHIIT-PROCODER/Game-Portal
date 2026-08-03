@@ -9,6 +9,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import searchRoutes from "./routes/searchRoutes.js";
 import statsRoutes from "./routes/statsRoutes.js";
 import sitemapRoutes from "./routes/sitemapRoutes.js";
+import pushRoutes from "./routes/pushRoutes.js";
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use("/api/games", gameRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/search", searchRoutes);
 app.use("/api/stats", statsRoutes);
+app.use("/api/push", pushRoutes);
 
 // Root level routes (sitemap)
 app.use("/", sitemapRoutes);

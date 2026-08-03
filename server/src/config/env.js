@@ -15,4 +15,7 @@ export const env = {
   GAME_FEED_URL:
     process.env.GAME_FEED_URL ||
     "https://feed.gamemonetize.com/rssfeed/?format=json",
+  VAPID_PUBLIC_KEY: process.env.VAPID_PUBLIC_KEY || "",
+  VAPID_PRIVATE_KEY: process.env.VAPID_PRIVATE_KEY || "",
+  VAPID_SUBJECT: process.env.VAPID_SUBJECT || "mailto:admin@crazygames.local",
 };

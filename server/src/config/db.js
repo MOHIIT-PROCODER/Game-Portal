@@ -105,6 +105,26 @@ function initializeDatabase() {
       },
     );
 
+    // 4. Create push_subscriptions table (Web Push / PWA)
+    db.run(
+      `
+      CREATE TABLE IF NOT EXISTS push_subscriptions (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        endpoint TEXT UNIQUE NOT NULL,
+        p256dh TEXT NOT NULL,
+        auth TEXT NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `,
+      (err) => {
+        if (err)
+          console.error(
+            "Error creating push_subscriptions table:",
+            err.message,
+          );
+      },
+    );
+
     console.log("Database tables initialized.");
   });
 }
