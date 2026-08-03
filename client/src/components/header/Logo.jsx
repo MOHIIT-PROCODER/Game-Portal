@@ -5,14 +5,10 @@ import { ROUTES } from "../../utils/constants";
 export function Logo() {
   const navigate = useNavigate();
 
-  const handleLogoClick = () => {
-    navigate(ROUTES.HOME);
-  };
-
   return (
-    <div className="logo-container" onClick={handleLogoClick}>
+    <div className="logo-container" onClick={() => navigate(ROUTES.HOME)}>
       <span className="logo-icon">🎮</span>
-      <span>GAMEPORTAL</span>
+      <span className="logo-text">CrazyGames</span>
     </div>
   );
 }

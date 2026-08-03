@@ -6,21 +6,41 @@ export function SidebarToggle() {
 
   return (
     <div
-      className={`flex items-center py-3 cursor-pointer transition-colors border-t border-border text-text-muted hover:text-text-primary hover:bg-white/5 mt-auto h-[52px] ${!sidebarOpen ? "justify-center px-0" : "justify-start px-6"}`}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        padding: sidebarOpen ? "12px var(--space-2)" : "12px",
+        justifyContent: sidebarOpen ? "flex-start" : "center",
+        gap: "10px",
+        cursor: "pointer",
+        borderTop: "1px solid var(--border-subtle)",
+        color: "var(--text-muted)",
+        marginTop: "auto",
+        transition: "all 0.15s ease",
+        minHeight: "50px",
+      }}
       onClick={toggleSidebar}
       title={sidebarOpen ? "Collapse Menu" : "Expand Menu"}
+      onMouseEnter={e => {
+        e.currentTarget.style.color = "var(--accent-light)";
+        e.currentTarget.style.background = "rgba(124,58,237,0.06)";
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.color = "var(--text-muted)";
+        e.currentTarget.style.background = "transparent";
+      }}
     >
-      <span className={`flex items-center justify-center text-lg ${!sidebarOpen ? "" : "mr-4 w-6"}`}>
+      <span style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
         {sidebarOpen ? (
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.5"
+            strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-[18px] h-[18px]"
+            style={{ width: "18px", height: "18px" }}
           >
             <polyline points="11 17 6 12 11 7" />
             <polyline points="18 17 13 12 18 7" />
@@ -31,17 +51,27 @@ export function SidebarToggle() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.5"
+            strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-[18px] h-[18px]"
+            style={{ width: "18px", height: "18px" }}
           >
             <polyline points="13 17 18 12 13 7" />
             <polyline points="6 17 11 12 6 7" />
           </svg>
         )}
       </span>
-      {sidebarOpen && <span className="font-semibold whitespace-nowrap overflow-hidden text-ellipsis">Collapse Menu</span>}
+      {sidebarOpen && (
+        <span
+          style={{
+            fontSize: "var(--font-size-xs)",
+            fontWeight: 600,
+            whiteSpace: "nowrap",
+          }}
+        >
+          Collapse
+        </span>
+      )}
     </div>
   );
 }

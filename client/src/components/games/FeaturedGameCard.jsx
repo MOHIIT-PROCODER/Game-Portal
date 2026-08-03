@@ -25,17 +25,10 @@ export function FeaturedGameCard({ game }) {
       {/* Foreground Content */}
       <div className="featured-game-content">
         <div className="featured-meta">
-          <span className="game-badge featured">Featured Game</span>
-          <span
-            style={{
-              fontSize: "12px",
-              color: "var(--accent-secondary)",
-              fontWeight: "bold",
-              textTransform: "uppercase",
-            }}
-          >
-            {game.category}
-          </span>
+          <span className="game-badge featured">⭐ Featured</span>
+          {game.category && (
+            <span className="pill-tag cyan">{game.category}</span>
+          )}
         </div>
 
         <h2 className="featured-title">{game.title}</h2>
@@ -47,7 +40,7 @@ export function FeaturedGameCard({ game }) {
 
         <div style={{ marginTop: "8px" }}>
           <button className="play-button">
-            <span>▶️</span> Play Now
+            <span>▶</span> Play Now
           </button>
         </div>
       </div>

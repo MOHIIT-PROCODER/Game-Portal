@@ -9,18 +9,18 @@ export function SidebarItem({
 }) {
   return (
     <div
-      className={`flex items-center py-3 cursor-pointer transition-colors border-l-4 ${
-        active 
-          ? "border-accent text-accent bg-accent/10" 
-          : "border-transparent text-text-muted hover:text-text-primary hover:bg-white/5"
-      } ${collapsed ? "justify-center px-0" : "justify-start px-6"}`}
+      className={`sidebar-item ${active ? "active" : ""}`}
       onClick={onClick}
       title={collapsed ? label : undefined}
+      style={{
+        justifyContent: collapsed ? "center" : "flex-start",
+        padding: collapsed ? "0" : "0 var(--space-2)",
+      }}
     >
-      <span className={`flex items-center justify-center text-lg ${collapsed ? "" : "mr-4 w-6"}`}>
-        {icon}
-      </span>
-      {!collapsed && <span className="font-semibold whitespace-nowrap overflow-hidden text-ellipsis">{label}</span>}
+      <span className="sidebar-item-icon">{icon}</span>
+      {!collapsed && (
+        <span className="sidebar-item-label">{label}</span>
+      )}
     </div>
   );
 }

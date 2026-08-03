@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useCategories from "../../hooks/useCategories";
+import { useGameContext } from "../../context/GameContext";
 import SidebarItem from "./SidebarItem";
 import { CATEGORY_ICONS } from "../../utils/constants";
 
@@ -8,9 +9,13 @@ export function CategoryMenu({ collapsed = false }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { categories, loading } = useCategories();
+  const { closeMobileDrawer } = useGameContext();
 
   const handleCategoryClick = (categoryName) => {
     navigate(`/category/${encodeURIComponent(categoryName.toLowerCase())}`);
+    if (window.innerWidth <= 768) {
+      closeMobileDrawer();
+    }
   };
 
   if (loading && !collapsed) {

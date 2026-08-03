@@ -3,13 +3,22 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import BackToTop from "../common/BackToTop";
+import MobileNavbar from "./MobileNavbar";
 import { useGameContext } from "../../context/GameContext";
 
 export function MainLayout({ children }) {
   const { sidebarOpen } = useGameContext();
 
   return (
-    <div className="flex flex-col min-h-screen bg-background text-text-primary font-body">
+    <div
+      className="app-container"
+      style={{
+        background: "var(--bg-primary)",
+        backgroundImage:
+          "radial-gradient(ellipse at 20% 10%, rgba(124, 58, 237, 0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 90%, rgba(6, 182, 212, 0.05) 0%, transparent 50%)",
+        minHeight: "100vh",
+      }}
+    >
       {/* Top Navbar */}
       <Header />
 
@@ -18,15 +27,16 @@ export function MainLayout({ children }) {
 
       {/* Page Body Wrapper */}
       <div
-        className={`flex flex-1 mt-header min-h-[calc(100vh-70px)] transition-[padding-left] duration-0 
-          pl-0 md:pl-sidebar-collapsed 
-          ${sidebarOpen ? "lg:pl-sidebar" : "lg:pl-sidebar-collapsed"}`}
+        className={`main-wrapper ${sidebarOpen ? "sidebar-open" : "sidebar-closed"}`}
       >
-        <div className="flex-1 p-4 lg:p-6 w-full max-w-[1600px] mx-auto flex flex-col gap-7 pb-20">
+        <div className="content-container">
           {children}
           <Footer />
         </div>
       </div>
+
+      {/* Mobile bottom nav */}
+      <MobileNavbar />
 
       {/* Scroll back to top float */}
       <BackToTop />

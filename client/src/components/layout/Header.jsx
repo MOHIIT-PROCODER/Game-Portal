@@ -9,23 +9,43 @@ export function Header() {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-header bg-background/95 backdrop-blur-md border-b border-border z-[100] flex items-center justify-between px-4 lg:px-6">
-      <div className="flex items-center gap-3">
+    <header className="header">
+      <div className="header-left">
         {/* Hamburger/Toggle Menu for Sidebar */}
         <button
-          className="p-2 rounded-full text-text-muted hover:text-text-primary hover:bg-white/5 transition-colors"
+          style={{
+            padding: "8px",
+            borderRadius: "10px",
+            color: "var(--text-tertiary)",
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid var(--border-subtle)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "all 0.15s ease",
+          }}
           onClick={toggleSidebar}
           title="Toggle Sidebar"
+          onMouseEnter={e => {
+            e.currentTarget.style.background = "rgba(124,58,237,0.12)";
+            e.currentTarget.style.color = "var(--accent-light)";
+            e.currentTarget.style.borderColor = "rgba(124,58,237,0.3)";
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+            e.currentTarget.style.color = "var(--text-tertiary)";
+            e.currentTarget.style.borderColor = "var(--border-subtle)";
+          }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2.5"
+            strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            style={{ width: "20px", height: "20px" }}
+            style={{ width: "18px", height: "18px" }}
           >
             <line x1="3" y1="12" x2="21" y2="12" />
             <line x1="3" y1="6" x2="21" y2="6" />
@@ -42,7 +62,7 @@ export function Header() {
       {/* Mobile Right Controls */}
       <div style={{ display: "flex", alignItems: "center" }}>
         <button
-          className="md:hidden p-2 rounded-full text-text-muted hover:text-text-primary hover:bg-white/5 transition-colors"
+          className="mobile-search-toggle-btn"
           onClick={() => setMobileSearchOpen(true)}
           title="Search Games"
         >

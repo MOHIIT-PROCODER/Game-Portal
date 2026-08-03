@@ -26,29 +26,33 @@ export function GameToolbar({
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between p-3 md:p-0 gap-3 md:gap-4 bg-black md:bg-transparent rounded-lg md:rounded-none">
+    <div className="player-toolbar">
       {/* Plays statistics */}
-      <div className="flex w-full md:w-auto justify-around md:justify-start gap-4 md:gap-6 border-b-2 border-border md:border-none pb-2 md:pb-0 text-text-muted text-sm font-semibold">
+      <div className="toolbar-stats">
         <span title="Total plays">
-          👁️ <strong className="text-white">{formatPlayCount(stats.play_count)}</strong> plays
+          👁️ <strong style={{ color: "var(--text-primary)" }}>{formatPlayCount(stats.play_count)}</strong> plays
         </span>
         <span title="Total likes">
-          👍 <strong className="text-white">{formatPlayCount(stats.like_count)}</strong> likes
+          👍 <strong style={{ color: "var(--text-primary)" }}>{formatPlayCount(stats.like_count)}</strong> likes
         </span>
       </div>
 
       {/* Toolbar actions */}
-      <div className="flex w-full md:w-auto justify-between md:justify-end items-center gap-2 md:gap-3">
-        {/* Simple Likes system */}
+      <div className="toolbar-buttons">
+        {/* Like button */}
         <button
-          className={`flex-1 md:flex-none flex items-center justify-center gap-2 p-0 md:py-2 md:px-3 w-11 h-11 md:w-auto md:h-auto rounded-full md:rounded-sm bg-white/5 hover:bg-white/10 hover:-translate-y-0.5 border border-white/10 text-text-inverse font-heading font-bold text-xs uppercase cursor-pointer transition-all active:scale-95 ${hasVoted ? "text-success border-success/30 bg-success/10" : ""}`}
+          className={`toolbar-btn ${hasVoted ? "active" : ""}`}
           onClick={() => handleVote(true)}
           disabled={hasVoted}
           title="Like this game"
-          style={{ opacity: hasVoted ? 0.7 : 1 }}
+          style={hasVoted ? {
+            color: "var(--success)",
+            borderColor: "rgba(16,185,129,0.3)",
+            background: "rgba(16,185,129,0.1)",
+          } : {}}
         >
-          <span className="w-5 h-5 flex items-center justify-center">👍</span>
-          <span className="hidden md:inline">Like</span>
+          <span>👍</span>
+          <span className="btn-label">Like</span>
         </button>
 
         <ReloadGameButton onClick={onReload} />
